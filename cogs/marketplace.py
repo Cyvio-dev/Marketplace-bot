@@ -24,8 +24,8 @@ class post_deny_modal(discord.ui.Modal):
         for item in self.view.children:
             item.disabled = True
         await interaction.response.edit_message(view=self.view)
-        await interaction.response.send_message("Post denied", ephemeral=True)
-        await self.user.send(f"{self.user.mention}, your post has been denied.\nReason: {self.Reason.value}")
+        user = await interaction.client.fetch_user(self.user)
+        await user.send(f"{user.mention}, your post has been denied.\nReason: {self.Reason.value}")
 
 
 # Post approve/deny buttons
