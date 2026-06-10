@@ -197,7 +197,7 @@ class hire_modal(discord.ui.Modal):
     )
 
     # On modal submit
-    async def on_submit(self, interaction: discord.Interaction):
+    async def on_submit_hire(self, interaction: discord.Interaction):
         user_id = interaction.user.id
         current_time = datetime.now()
         last_used = cooldowns.get(user_id)
