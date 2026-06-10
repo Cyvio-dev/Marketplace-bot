@@ -21,12 +21,18 @@ class Main(commands.Bot):
                 review TEXT NOT NULL
             );
         """)
+        await self.db.execute("""
+            CREATE TABLE IF NOT EXISTS set_approval(
+                guild_id BIGINT PRIMARY KEY,
+                channel_id BIGINT NOT NULL  
+            );                                     
+        """)
         for filename in os.listdir("cogs"):
             if filename.endswith(".py"):
                 try:
                     await self.load_extension(f"cogs.{filename[:-3]}")
                 except Exception as e:
-                    print(f"Not loaded: {filename}")
+                    print(f"Not loaded: {filename} - {e}")
 
         print("Extension loaded!")
 
